@@ -1,0 +1,28 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 1. Blokir akses langsung ke file sensitif (.env, .htaccess, dll)
+    RewriteRule ^\.(env|htaccess) - [F,L]
+
+    # 2. Blokir akses langsung ke folder src agar source code aman
+    RewriteRule ^src(/|$) - [F,L]
+
+    # 3. Jika user mengetik /index atau /index.php, redirect 301 ke / (Halaman Utama)
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index(\.php)?\ HTTP/ [NC]
+    RewriteRule ^index(\.php)?$ / [R=301,L]
+
+    # 4. Jika folder 'public' diketik di URL, hilangkan 'public/' agar rapi
+    RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
+    RewriteRule ^public/(.*)$ /$1 [R=301,L]
+
+    # 5. Alihkan semua request secara internal ke public/index.php (Sistem Routing)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/index.php [QSA,L]
+
+    # 6. Jika file assets ada di dalam public, arahkan diam-diam
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{DOCUMENT_ROOT}/public/$1 -f
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

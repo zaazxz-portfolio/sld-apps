@@ -1,0 +1,7 @@
+# Development environment
+.env
+context
+
+# Ready Production
+database.db
+db.sql

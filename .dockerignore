@@ -1,0 +1,51 @@
+# Git / VCS
+.git
+.gitignore
+
+# Docker files (tidak perlu di dalam image)
+.dockerignore
+compose.yaml
+compose.override.yaml
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Editor & IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# SQLite database (di-mount via volume, bukan di-copy ke image)
+*.db
+*.sqlite
+*.sqlite3
+
+# Uploads / storage yang besar
+storage/
+uploads/
+
+# Cache & build artifacts
+cache/
+tmp/
+temp/
+
+# Composer vendor (jika nanti dipakai)
+vendor/
+
+# Node modules (jika nanti ada asset build)
+node_modules/
+
+# Context folder (sudah ada di .dockerignore sebelumnya)
+context/
