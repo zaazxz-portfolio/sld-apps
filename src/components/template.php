@@ -38,6 +38,9 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -67,6 +70,56 @@
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Print Styles */
+        @media print {
+            @page { margin: 0; size: A4 portrait; }
+            body { 
+                margin: 0; 
+                padding: 0; 
+                background: white !important; 
+            }
+            .no-print, header, footer { display: none !important; }
+            .glass-card { 
+                box-shadow: none !important; 
+                border: none !important;
+                background: white !important;
+            }
+            /* Ensure the report looks clean */
+            #reportDocument {
+                padding: 1.5cm 1cm !important;
+                margin: 0 !important;
+            }
+            
+            /* Fix Grid/Flex causing clipping across pages */
+            #reportDocument .grid {
+                display: block !important;
+            }
+            #reportDocument .grid > div {
+                margin-bottom: 1.5rem !important;
+            }
+            /* Keep signatures side-by-side */
+            #reportDocument .grid.grid-cols-2.text-center {
+                display: flex !important;
+                justify-content: space-between !important;
+            }
+
+            /* Prevent elements from being cut in half across pages */
+            #reportDocument table,
+            #reportDocument tr {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+            
+            #reportDocument .border,
+            #reportDocument .bg-slate-50,
+            #reportDocument .bg-amber-50\\/60 {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                display: inline-block !important;
+                width: 100% !important;
+            }
+        }
     </style>
 
     <?= $head ?? '' ?>
@@ -90,11 +143,12 @@
                 </div>
             </div>
 
-            <!-- Nav Links -->
-            <nav class="flex items-center gap-1">
-                <a href="/" class="px-3 py-1.5 text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-all">Home</a>
-                <a href="/about" class="px-3 py-1.5 text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-all">About</a>
-            </nav>
+<!-- Nav Links -->
+             <nav class="flex items-center gap-1">
+                 <a href="/" class="px-3 py-1.5 text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-all">Home</a>
+                 <a href="/about" class="px-3 py-1.5 text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-all">About</a>
+                 <a href="/history" class="px-3 py-1.5 text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-all">History</a>
+             </nav>
         </div>
     </header>
 
@@ -106,11 +160,12 @@
     <!-- Footer -->
     <footer class="bg-white/80 border-t border-slate-200 py-4 mt-auto">
         <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
-            <p>© <?= date('Y') ?> <?= htmlspecialchars($appName ?? 'SLD Apps') ?>. All rights reserved.</p>
+            <p>© <?= date('Y') ?> <?= htmlspecialchars($appName ?? 'SLD Apps') ?>. Crafted with ❤️ by <a href="https://temaningoding.id" class="hover:text-brand-600">Teman Ngoding ID</a>. All rights reserved.</p>
         </div>
     </footer>
 
     <?= $scripts ?? '' ?>
+    <script>lucide.createIcons();</script>
 
 </body>
 </html>

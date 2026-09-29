@@ -1,6 +1,6 @@
 # ============================================================
 # Stage: development
-# PHP 8.3 + Apache, with SQLite & MySQL support, Xdebug
+# PHP 8.3 + Apache, with SQLite support, Xdebug
 # ============================================================
 FROM php:8.3-apache AS development
 
@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libonig-dev \
     libxml2-dev \
-    default-mysql-client \
     unzip \
     curl \
     git \
@@ -24,8 +23,6 @@ RUN docker-php-ext-configure gd --with-jpeg --with-webp \
     && docker-php-ext-install -j$(nproc) \
         pdo \
         pdo_sqlite \
-        pdo_mysql \
-        mysqli \
         mbstring \
         zip \
         gd \
@@ -52,7 +49,6 @@ COPY docker/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 WORKDIR /var/www/html
 
 # Expose port 80
-EXPOSE 80
 
 # ============================================================
 # Stage: production (optional, bisa di-extend nanti)

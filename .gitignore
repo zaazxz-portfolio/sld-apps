@@ -1,7 +1,9 @@
-# Development environment
+# Development
 .env
 context
 
-# Ready Production
+# Production
 database.db
-db.sql
+storage
+node_modules
+storage/logs

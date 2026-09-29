@@ -1,6 +1,0 @@
-# Letakkan SQL init scripts di sini (*.sql)
-# File-file ini akan dieksekusi secara otomatis saat container MySQL pertama kali dibuat.
-#
-# Contoh:
-#   001_create_tables.sql
-#   002_seed_data.sql
