@@ -45,7 +45,12 @@ COPY docker/php/php-dev.ini /usr/local/etc/php/conf.d/php-dev.ini
 # Xdebug config
 COPY docker/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
-# Set working directory
+# -----------------------------------------------------------
+# Startup: ensure database file writable by www-data
+# -----------------------------------------------------------
+RUN echo "RUN chmod 666 /var/www/html/database.db /var/www/html/database.example.db 2>/dev/null || true" > /usr/local/bin/startup \
+    && chmod +x /usr/local/bin/startup
+
 WORKDIR /var/www/html
 
 # Expose port 80

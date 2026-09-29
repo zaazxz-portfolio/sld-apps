@@ -4,7 +4,7 @@
 
 date_default_timezone_set('Asia/Jakarta');
 
-$dbPath = __DIR__ . '/../../database.db';
+$dbPath = $_ENV['DB_SQLITE_PATH'] ?? (__DIR__ . '/../../database.db');
 
 try {
     $pdo = new PDO('sqlite:' . $dbPath);

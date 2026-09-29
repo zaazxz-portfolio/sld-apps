@@ -1,9 +1,31 @@
-# Development
-.env
-context
+# Dependencies
+vendor/
+node_modules/
 
-# Production
+# Database (SQLite)
 database.db
-storage
-node_modules
-storage/logs
+database.db-wal
+database.db-shm
+
+# Environment
+.env
+
+# Docker
+docker/mysql/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Test
+phpunit.xml
+coverage/
