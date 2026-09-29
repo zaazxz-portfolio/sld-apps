@@ -200,4 +200,4 @@ MIT — bebas dipakai, dimodifikasi, dikomersialkan.
 
 ---
 
-**Dibuat oleh [TemannGoding](https://temanngoding.id/)** — platform belajar pemrograman untuk menemukan cara belajar paling efektif.
+**Dibuat oleh [Temanngoding](https://temanngoding.id/)** — platform belajar pemrograman untuk menemukan cara belajar paling efektif.
